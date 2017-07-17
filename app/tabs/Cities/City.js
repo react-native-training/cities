@@ -48,7 +48,7 @@ class City extends React.Component {
     const { locations } = this.props;
     console.log('locations:', locations)
     return (
-      <ScrollView>
+      <ScrollView contentContainerStyle={{ flex: 1 }}>
         <View style={{ flex: 1 }}>
           <Icon
             underlayColor='#9C27B0'
