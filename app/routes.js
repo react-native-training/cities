@@ -34,8 +34,19 @@ const TabConfig = {
 }
 
 const TabStyleConfig = {
+  tabBarPosition: 'bottom',
   tabBarOptions: {
     activeTintColor: '#9C27B0',
+    inactiveTintColor: '#666',
+    showIcon: true,
+    indicatorStyle: {
+      backgroundColor: '#666'
+    },
+    style: {
+      backgroundColor: '#ffffff',
+      borderTopWidth: 1,
+      borderTopColor: '#ededed'
+    },
   },
 }
 

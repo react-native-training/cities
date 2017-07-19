@@ -8,7 +8,7 @@ import { KEY } from '../../constants';
 
 class CitiesTab extends React.Component {
   static navigationOptions = {
-     headerTitle: <Image style={{ marginTop: -3, maxHeight: 32 }} resizeMode='contain' source={require('../../assets/citieslogo.png')} />
+     headerTitle: <Image style={{ marginTop: -3, height: 32, width: 120 }} resizeMode='contain' source={require('../../assets/citieslogo.png')} />
   }
   componentDidMount() {
     const { dispatchUpdateFromStorage } = this.props;

@@ -87,6 +87,7 @@ class City extends React.Component {
             ))
           }
           <Modal
+            onRequestClose={this.toggleModal}
             animationType='slide'
             visible={this.state.modalVisible}
           >
