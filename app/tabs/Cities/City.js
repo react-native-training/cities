@@ -102,20 +102,23 @@ class City extends React.Component {
                 placeholder='Name'
                 style={styles.input}
                 autoCorrect={false}
+                underlineColorAndroid='transparent'
               />
               <TextInput
                 value={this.state.location['type']}
                 onChangeText={(value) => this.updateInput('type', value)}
                 placeholder='Type'
                 style={styles.input}
-                autoCorrect={false}f
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
               />
               <TextInput
                 value={this.state.location['address']}
                 onChangeText={(value) => this.updateInput('address', value)}
                 placeholder='Address'
                 style={styles.input}
-                autoCorrect={false}f
+                autoCorrect={false}
+                underlineColorAndroid='transparent'
               />
               <TextInput
                 value={this.state.location['notes']}
@@ -123,6 +126,7 @@ class City extends React.Component {
                 multiline
                 placeholder='Notes'
                 style={styles.multilineInput}
+                underlineColorAndroid='transparent'
               />
               <Button
                 containerViewStyle={{ marginLeft: 10, marginRight: 10 }}

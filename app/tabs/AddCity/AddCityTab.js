@@ -60,6 +60,7 @@ class CitiesTab extends React.Component {
           style={styles.textInput}
           placeholder='City name'
           autoCorrect={false}
+          underlineColorAndroid='transparent'
         />
         <TextInput
           value={this.state.input['country']}
@@ -67,6 +68,7 @@ class CitiesTab extends React.Component {
           style={styles.textInput}
           placeholder='Country name'
           autoCorrect={false}
+          underlineColorAndroid='transparent'
         />
         <Button
           buttonStyle={{ marginTop: 8 }}

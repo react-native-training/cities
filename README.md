@@ -1,6 +1,10 @@
 # React Native Training - Cities Demo App
 
+## iOS
 ![](http://i.imgur.com/6G7FW3l.jpg)
+
+## Android
+![](http://i.imgur.com/XaY0E20.png)
 
 ## To get started
 
