@@ -25,7 +25,6 @@ export default function cityReducer(state = initialState, action) {
           }
         }
       }
-      AsyncStorage.setItem(KEY, JSON.stringify(addCityState))
       return addCityState
     case ADD_LOCATION_TO_CITY:
       const addLocationState = {
@@ -41,7 +40,6 @@ export default function cityReducer(state = initialState, action) {
           }
         }
       };
-      AsyncStorage.setItem(KEY, JSON.stringify(addLocationState))
       return addLocationState
     case UPDATE_FROM_STORAGE:
       return {
