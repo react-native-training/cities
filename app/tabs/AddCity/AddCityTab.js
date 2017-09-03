@@ -1,7 +1,7 @@
 import React from 'react';
 import { TextInput, Dimensions, Image, View, Text, StyleSheet } from 'react-native';
 import { Button } from 'react-native-elements';
-import { addCity } from '../../actions/citiesActions';
+import { addCity, updateAsyncStorage } from '../../actions/citiesActions';
 import { connect } from 'react-redux';
 
 const { width } = Dimensions.get('window');
@@ -42,7 +42,9 @@ class CitiesTab extends React.Component {
     if (!this.state.input['country'] || !this.state.input['name']) return
     const { dispatchAddCity } = this.props;
     dispatchAddCity(this.state.input)
-    this.setState({ input: {} })
+    this.setState({ input: {} }, () => {
+      this.props.dispatchUpdateAsyncStorage();
+    })
     this.nameRef.focus()
   }
   render() {
@@ -82,7 +84,8 @@ class CitiesTab extends React.Component {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchAddCity: (city) => dispatch(addCity(city))
-})
+  dispatchAddCity: (city) => dispatch(addCity(city)),
+  dispatchUpdateAsyncStorage: () => dispatch(updateAsyncStorage()),
+});
 
 export default connect(null, mapDispatchToProps)(CitiesTab)

@@ -14,46 +14,21 @@ class CitiesTab extends React.Component {
   static contextTypes = {
     store: PropTypes.object.isRequired
   };
-  state = {
-    store: this.context.store.getState(),
-  }
-  componentWillReceiveProps() {
-    this.setState(() => ({ store: this.context.store.getState() }))
-  }
-  componentWillMount() {
-    AppState.addEventListener('change', this.handleAppStateChange);
-  }
-  componentWillUnmount() {
-    console.log('componentWillUnmount')
-  }
-  handleAppStateChange = (state) => {
-    if (state !== 'active') {
-       AsyncStorage.setItem(KEY, JSON.stringify(this.state.store.citiesReducer))
-    }
-    if (state === 'active') {
-      const { dispatchUpdateFromStorage } = this.props;
-      AsyncStorage.getItem(KEY)
-        .then(data => {
-          console.log('data:', data)
-          if (!data) return;
-          const cities = JSON.parse(data);
-          dispatchUpdateFromStorage(cities.cities)
-        })
-    }
-  }
   componentDidMount() {
     const { dispatchUpdateFromStorage } = this.props;
     AsyncStorage.getItem(KEY)
       .then(data => {
-        console.log('data:', data)
+        console.log('data: ', JSON.parse(data));
         if (!data) return;
         const cities = JSON.parse(data);
-        dispatchUpdateFromStorage(cities.cities)
+        dispatchUpdateFromStorage(cities.citiesReducer)
+      })
+      .catch(err => {
+        console.log('error in cities componentDidMount')
+        console.log('err :', err)
       })
   }
   render() {
-    console.log('state:', this.state);
-    console.log('props:', this.props);
     const { navigation } = this.props;
     const cities = Object.values(this.props.cities)
     return (

@@ -10,7 +10,7 @@ import {
 
 import { Icon, Button, Card } from 'react-native-elements';
 import { connect } from 'react-redux';
-import { addLocation } from '../../actions/citiesActions';
+import { addLocation, updateAsyncStorage } from '../../actions/citiesActions';
 
 class City extends React.Component {
   static navigationOptions = (props) => {
@@ -33,6 +33,8 @@ class City extends React.Component {
     dispatchAddLocation(name, this.state.location)
     this.setState({
       location: {}
+    }, () => {
+      this.props.dispatchUpdateAsyncStorage();
     })
     this.nameRef.focus()
   }
@@ -183,7 +185,8 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchAddLocation: (city, location) => dispatch(addLocation(city, location))
+  dispatchAddLocation: (city, location) => dispatch(addLocation(city, location)),
+  dispatchUpdateAsyncStorage: () => dispatch(updateAsyncStorage()),
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(City);

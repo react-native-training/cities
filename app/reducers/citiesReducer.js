@@ -1,5 +1,4 @@
 import { KEY, ADD_CITY, ADD_LOCATION_TO_CITY, UPDATE_FROM_STORAGE } from '../constants';
-import { AsyncStorage } from 'react-native';
 
 const initialState = {
   cities: {
@@ -12,7 +11,6 @@ const initialState = {
 }
 
 export default function cityReducer(state = initialState, action) {
-  console.log('action:', action)
   switch (action.type) {
     case ADD_CITY:
       const addCityState = {
@@ -43,7 +41,7 @@ export default function cityReducer(state = initialState, action) {
       return addLocationState
     case UPDATE_FROM_STORAGE:
       return {
-        cities: action.cities,
+        cities: action.cities.cities,
       }
     default:
       return state;
