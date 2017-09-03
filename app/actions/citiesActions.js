@@ -24,7 +24,6 @@ export function updateFromStorage(cities) {
 }
 
 export const updateAsyncStorage = () => (dispatch, getState) => {
-  console.log('state:  ', getState());
   AsyncStorage.setItem(KEY, JSON.stringify(getState()))
     .then(() => console.log('updateAsyncStorage successful'))
     .catch(err => console.log('error: ', err));
