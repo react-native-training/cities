@@ -5,8 +5,8 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
 
-import Cities from '../tabs/Cities/Cities';
-import City from '../tabs/Cities/City';
+import Cities from 'app/tabs/Cities/Cities';
+import City from 'app/tabs/Cities/City';
 
 const Routes = {
   Cities: { screen: Cities },

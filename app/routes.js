@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, TabNavigator } from 'react-navigation';
-
 import { Text, AsyncStorage } from 'react-native';
 
 import { Tabs, TabConfig } from '@config/tabs';
@@ -32,7 +31,7 @@ class App extends React.Component {
         navigation={
           addNavigationHelpers({
             dispatch: this.props.dispatch,
-            state: this.props.tabs,
+            state: this.props.nav,
           })
         }
       />
@@ -45,7 +44,7 @@ const user = {
 };
 
 const mapStateToProps = (state) => ({
-  tabs: state.tabs,
+  nav: state.nav,
   user,
 });
 

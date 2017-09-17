@@ -4,7 +4,7 @@ import tabReducer from './tabReducer';
 
 const rootReducer = combineReducers({
     citiesReducer,
-    tabs: tabReducer,
+    nav: tabReducer,
 });
 
 export default rootReducer;
