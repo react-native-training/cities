@@ -39,7 +39,7 @@ class CitiesTab extends React.Component {
               key={index}
               containerStyle={{ borderBottomColor: '#e5e5e5' }}
               title={city.name}
-              onPress={() => navigation.navigate('City', { city })}
+              onPress={() => this.props.navigate('City', { city })}
             />
           ))
         }
@@ -50,10 +50,11 @@ class CitiesTab extends React.Component {
 
 const mapStateToProps = (state) => ({
   cities: state.citiesReducer.cities,
-})
+});
 
 const mapDispatchToProps = (dispatch) => ({
-  dispatchUpdateFromStorage: (cities) => dispatch(updateFromStorage(cities))
-})
+  dispatchUpdateFromStorage: (cities) => dispatch(updateFromStorage(cities)),
+  navigate: (routeName, params) => dispatch({ type: 'PUSH', routeName, params }),
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(CitiesTab)

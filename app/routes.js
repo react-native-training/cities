@@ -1,60 +1,52 @@
 import React from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import { connect } from 'react-redux';
+import { addNavigationHelpers, TabNavigator } from 'react-navigation';
 
-import { StackNavigator, TabNavigator } from 'react-navigation';
+import { Text, AsyncStorage } from 'react-native';
 
-import CitiesTab from './tabs/Cities/CitiesTab';
-import AddCityTab from './tabs/AddCity/AddCityTab';
+import { Tabs, TabConfig } from '@config/tabs';
 
-const TabConfig = {
-  CitiesTab: {
-    screen: CitiesTab,
-    navigationOptions: {
-      tabBarLabel: 'Cities',
-      tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('./assets/cityicon.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      )
+const TabNav = TabNavigator(Tabs, TabConfig);
+
+class App extends React.Component {
+  state = {
+    loading: false,
+  }
+  componentDidMount() {
+    AsyncStorage.getItem('USER')
+      .then(data => {
+        console.log('Data: ', JSON.parse(data));
+        this.setState({ loading: false });
+      })
+      .catch(() => {
+        console.log('error...')
+        this.setState({ loading: false });
+      })
+  }
+  render() {
+    if (this.state.loading) {
+      return <Text>Loading...</Text>
     }
-  },
-  AddCityTab: {
-    screen: AddCityTab,
-    navigationOptions: {
-      tabBarLabel: 'Add City',
-      tabBarIcon: ({ tintColor }) => (
-        <Image
-          source={require('./assets/addicon.png')}
-          style={[styles.icon, {tintColor: tintColor}]}
-        />
-      )
-    }
+    return (
+      <TabNav
+        navigation={
+          addNavigationHelpers({
+            dispatch: this.props.dispatch,
+            state: this.props.tabs,
+          })
+        }
+      />
+    )
   }
 }
 
-const TabStyleConfig = {
-  tabBarPosition: 'bottom',
-  tabBarOptions: {
-    activeTintColor: '#9C27B0',
-    inactiveTintColor: '#666',
-    showIcon: true,
-    indicatorStyle: {
-      backgroundColor: '#666'
-    },
-    style: {
-      backgroundColor: '#ffffff',
-      borderTopWidth: 1,
-      borderTopColor: '#ededed'
-    },
-  },
-}
+const user = {
+  isLoggedIn: false,
+};
 
-export default App = TabNavigator(TabConfig, TabStyleConfig);
+const mapStateToProps = (state) => ({
+  tabs: state.tabs,
+  user,
+});
 
-const styles = StyleSheet.create({
-  icon: {
-    width: 28,
-    height: 28
-  }
-})
+export default connect(mapStateToProps)(App);

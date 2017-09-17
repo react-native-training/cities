@@ -14,6 +14,7 @@ import { addLocation, updateAsyncStorage } from '../../actions/citiesActions';
 
 class City extends React.Component {
   static navigationOptions = (props) => {
+    console.log('props:', props);
     const { name } = props.navigation.state.params.city
     return {
       title: name

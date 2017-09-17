@@ -1,20 +1,26 @@
 import React from 'react';
-import { View, Text, Image } from 'react-native';
-import { StackNavigator } from 'react-navigation';
 
-import Cities from './Cities';
-import City from './City';
+import { Routes, RouteConfig } from '@config/routes';
+import { connect } from 'react-redux';
+import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-const RouteConfig = {
-  Cities: { screen: Cities },
-  City: { screen: City }
-}
+const CitiesNav = StackNavigator(Routes, RouteConfig);
 
-const NavConfig = {
-  navigationOptions: {
-    headerTintColor: 'white',
-    headerStyle: { backgroundColor: '#9C27B0' }
-  } 
-}
+export default CitiesNav;
 
-export default StackNavigator(RouteConfig, NavConfig)
+// const Cities = (props) => (
+//   <CitiesNav
+//     navigation={
+//       addNavigationHelpers({
+//         dispatch: props.dispatch,
+//         state: props.nav,
+//       })
+//     }
+//   />
+// );
+
+// const mapStateToProps = (state) => ({
+//   nav: state.nav,
+// });
+
+// export default connect(mapStateToProps)(Cities);
